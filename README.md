@@ -39,13 +39,13 @@ Dashboard (Next.js)  ←→  FastAPI Backend  ←→  LangGraph Middleware
 
 | Layer | Technology |
 |---|---|
-| Backend | Python 3.12, FastAPI, SQLAlchemy |
-| Agent Runtime | LangChain / LangGraph |
-| LLM | OpenAI (gpt-4o) |
-| Database | SQLite (dev) → PostgreSQL (prod) |
-| Frontend | Next.js 14 (App Router), TypeScript, Tailwind CSS |
+| Backend | Python 3.11, FastAPI, SQLAlchemy async, Pydantic v2 |
+| Agent Runtime | LangChain / LangGraph / OpenAI Agents SDK / CrewAI / AutoGen |
+| LLM | OpenAI GPT-4o / GPT-4o-mini (optional; most features work without it) |
+| Database | SQLite (dev) → PostgreSQL (prod) — 16 ORM tables |
+| Frontend | Next.js 14 (App Router), React 19, TypeScript, Tailwind CSS, Recharts |
 | Package management | Poetry (backend), npm (frontend) |
-| Testing | pytest |
+| Testing | pytest — 97 passing tests |
 
 ---
 
@@ -63,10 +63,9 @@ Dashboard (Next.js)  ←→  FastAPI Backend  ←→  LangGraph Middleware
 ```bash
 cd backend
 poetry install
-cp ../.env.example ../.env     # fill in OPENAI_API_KEY
-poetry run uvicorn norma.main:app --reload
-# API available at http://localhost:8000
-# Docs at        http://localhost:8000/docs
+poetry run uvicorn norma.main:app --host 0.0.0.0 --port 8080 --reload
+# API available at http://localhost:8080
+# Swagger docs at  http://localhost:8080/docs
 ```
 
 ### Frontend
@@ -74,16 +73,31 @@ poetry run uvicorn norma.main:app --reload
 ```bash
 cd frontend
 npm install
-cp ../.env.example .env.local  # set NEXT_PUBLIC_API_URL=http://localhost:8000
 npm run dev
-# Dashboard at http://localhost:3000
+# Dashboard at http://localhost:3030
+```
+
+### Seed Demo Data
+
+```bash
+cd backend
+poetry run python -m norma.seed
+# Generates 3 demo workflows with realistic run histories
+```
+
+### Run a Real Agent Under Monitoring
+
+```bash
+cd backend
+export OPENAI_API_KEY=sk-...
+poetry run norma-watch --agent-file ../agents/financial_reader/earnings_report_reader.py
 ```
 
 ### Run Tests
 
 ```bash
 cd backend
-poetry run pytest tests/ -v
+poetry run pytest tests/ -v   # 97 passing
 ```
 
 ### OTLP Trace Export (Jaeger / Grafana / Datadog)
@@ -112,98 +126,175 @@ Notes:
 - Headers are passed via `OTLP_HEADERS_JSON` as a JSON object string.
 - Export payload includes tokens, cost, latency, framework, contract version, and span I/O previews.
 
-### Seed Demo Data
-
-```bash
-cd backend
-poetry run python -m norma.seed
-# Seeds all three demo workflows with realistic run histories
-```
-
 ---
 
 ## Project Structure
 
 ```
 norma/
-├── backend/                         # FastAPI application (Poetry)
+├── backend/                         # FastAPI application (Python 3.11, Poetry)
 │   ├── pyproject.toml
 │   ├── norma/
-│   │   ├── main.py                  # App entry point
+│   │   ├── main.py                  # FastAPI app entry point
 │   │   ├── config.py                # Settings (pydantic-settings)
-│   │   ├── database.py              # SQLAlchemy engine + session
-│   │   ├── models/                  # ORM models (9 tables)
+│   │   ├── database.py              # SQLAlchemy async engine
+│   │   ├── models/                  # ORM models (16 tables)
 │   │   ├── schemas/                 # Pydantic request/response schemas
-│   │   ├── api/                     # FastAPI routers
-│   │   ├── core/                    # Business logic
-│   │   │   ├── contract_engine.py   # Contract parsing + validation
-│   │   │   ├── enforcement.py       # Runtime enforcement middleware
+│   │   ├── api/                     # FastAPI routers (40+ endpoints)
+│   │   │   ├── agents.py            # Fleet + onboarding
+│   │   │   ├── runs.py              # Execution telemetry
+│   │   │   ├── contracts.py         # Version lifecycle
+│   │   │   ├── compliance.py        # Governance rules
+│   │   │   ├── qa.py                # Natural language Q&A
+│   │   │   ├── violations.py        # Enforcement audit log
+│   │   │   ├── alerts.py            # Dashboard alerts
+│   │   │   ├── events.py            # SSE real-time events
+│   │   │   ├── analytics.py         # Trends + version checkpoints
+│   │   │   └── attributions.py      # Failure root cause
+│   │   ├── core/                    # Business logic engines
 │   │   │   ├── trust_engine.py      # Trust score + tier transitions
-│   │   │   ├── attribution.py       # Failure attribution engine
+│   │   │   ├── enforcement.py       # 5 pre-execution policy checks
+│   │   │   ├── quality_scorer.py    # Quality evaluation (deterministic + LLM)
+│   │   │   ├── contract_engine.py   # YAML parsing + validation
+│   │   │   ├── contract_generator.py# Auto-generate proposals (never auto-activate)
+│   │   │   ├── attribution.py       # Probabilistic failure analysis
+│   │   │   ├── enhancement.py       # Workflow improvement recommendations
 │   │   │   ├── context_router.py    # Context budget routing
-│   │   │   ├── contract_generator.py# LLM-powered auto-gen
+│   │   │   ├── trace.py             # OTel-compatible span collection
 │   │   │   ├── anomaly_detector.py  # Statistical anomaly alerts
 │   │   │   ├── version_comparator.py# Before/after metric diffs
-│   │   │   └── qa_engine.py         # Conversational Q&A (data-grounded)
-│   │   ├── middleware/              # LangGraph hooks + execution logger
-│   │   ├── workflows/               # Three demo workflows
+│   │   │   ├── qa_engine.py         # Conversational Q&A logic
+│   │   │   └── compliance/          # Compliance rules (OWASP, NIST, EU AI Act)
+│   │   ├── integrations/            # Agent adapters
+│   │   │   ├── session_core.py      # Framework-agnostic base class
+│   │   │   ├── session.py           # LangChain/LangGraph adapter
+│   │   │   ├── openai_agent_adapter.py
+│   │   │   ├── openai_func_adapter.py
+│   │   │   ├── crewai_adapter.py
+│   │   │   ├── autogen_adapter.py
+│   │   │   ├── introspect.py        # AST scanner for onboarding
+│   │   │   └── watch.py             # norma-watch CLI entry
+│   │   ├── agents/                  # Backend agent shims + utilities
 │   │   └── seed.py                  # Demo data seeder
-│   └── tests/
-│       ├── test_workflow_1_dynamic_authority.py
-│       ├── test_workflow_2_context_routing.py
-│       └── test_workflow_3_failure_attribution.py
-├── frontend/                        # Next.js dashboard
+│   └── tests/                       # 97 passing tests
+├── frontend/                        # Next.js 14 dashboard (React 19, TypeScript)
 │   ├── app/
-│   │   ├── page.tsx                 # Fleet view (VP / Engineer toggle)
-│   │   ├── agents/[id]/             # Agent detail page
+│   │   ├── page.tsx                 # Fleet dashboard (VP/Engineer mode toggle)
+│   │   ├── agents/[id]/page.tsx     # Agent detail + contract viewer
+│   │   ├── runs/[id]/page.tsx       # Run detail + span tree
+│   │   ├── compliance/page.tsx      # Compliance posture
+│   │   ├── alerts/page.tsx          # Violation inbox
 │   │   └── ...
-│   └── components/
+│   ├── components/
+│   │   ├── AgentCard.tsx            # Fleet card
+│   │   ├── TrustSparkline.tsx       # Historical trust visualization
+│   │   ├── SpanTree.tsx             # Hierarchical trace view
+│   │   ├── MetricsTrendCharts.tsx   # Time-series charts with version checkpoints
+│   │   ├── PromptInspector.tsx      # LLM message history
+│   │   ├── OnboardAgentModal.tsx    # Agent registration (AST → contract)
+│   │   ├── GovernanceReports.tsx    # Sentinel sweep results
+│   │   └── ...
+│   ├── hooks/
+│   │   ├── useEventStream.ts        # SSE subscription
+│   │   └── useMode.ts               # VP/Engineer mode toggle
+│   └── lib/
+│       ├── api.ts                   # API client
+│       └── types.ts                 # TypeScript types
+├── agents/                          # Demo agents
+│   ├── financial_reader/            # Financial report summarizer (LangChain)
+│   ├── research_team/               # Research pipeline (3-node LangGraph)
+│   ├── openai_research/             # OpenAI Agents SDK demo
+│   ├── norma_sentinel/              # Governance sweep agent
+│   ├── red_team/                    # Security attack simulations
+│   └── ... (10+ more agents)
+├── data/                            # Demo agent data files
+│   ├── public/                      # Public data (allowed by contracts)
+│   ├── confidential/                # Confidential data (blocked by enforcement)
+│   ├── research/                    # Research papers
+│   └── ...
 ├── docs/
-│   └── design.md                    # Full product design document
-├── .env.example
+│   ├── WIKI.md                      # Complete technical wiki (1400+ lines)
+│   ├── DEMO_PLAN.md                 # Demo preparation guide
+│   ├── SYSTEM_DESIGN.md             # Architecture + design decisions
+│   ├── FEATURES.md                  # Feature list + status
+│   ├── E2E_SCENARIOS_VERIFIED.md    # End-to-end test scenarios
+│   ├── design.md                    # Original product design
+│   └── ...
+├── scripts/
+│   └── run_all_agents.sh            # Batch agent runner
+├── docker-compose.yml               # Local dev environment
+├── .env                             # Local environment (git-ignored)
+├── .env.example                     # Example environment
 ├── .gitignore
-├── TASKS.md                         # Detailed build roadmap
 └── README.md
 ```
 
 ---
 
-## The Three Demo Workflows
+## Key Capabilities
 
-All tests run against live system state — there is no separate demo mode.
+| Capability | Implementation |
+| --- | --- |
+| **Trust & Tier System** | Score 0.0–1.0, +0.025 per clean run, −0.25 on violation. Restricted → Standard (0.65+, 10 clean) → Trusted (0.82+, 20 clean). Never auto-promotes. |
+| **Enforcement Engine** | 5 deterministic pre-execution checks: tool ACL, data path glob, output PII patterns, cost SLA, latency SLA. Always runs, cannot be bypassed. |
+| **Quality Scoring** | Deterministic checks (output length, error keywords, format, PII) + optional GPT-4o-mini judge. Composite 40% deterministic + 60% LLM. |
+| **Contract Lifecycle** | YAML policies, versioned, human-reviewed before activation. Full audit trail (who changed what, when, why). |
+| **Multi-Agent Orchestration** | Run tree (parent-child), sub-agent spans, context routing, attribution (probabilistic failure analysis). |
+| **Compliance Posture** | 12 rules: OWASP LLM Top 10 (5), NIST AI RMF (3), EU AI Act (3), model drift (1). Pass/fail per rule with evidence. PDF export. |
+| **Observability** | OTel-compatible spans (trace trees), SSE real-time events, span waterfall timeline, LLM message history. |
+| **Enhancement Recommendations** | 3 types: token waste, violation patterns, cost hotspots. Includes confidence levels + YAML fix suggestions. |
 
-| Workflow | Agent | Primary Capability Tested |
-|---|---|---|
-| **WF1** | Financial Report Agent | Dynamic Authority Calibration |
-| **WF2** | Research Report Pipeline | Context Budget Routing |
-| **WF3** | Customer Support Triage | Failure Attribution |
+## Demo Agents
 
-Each workflow has a full pytest suite with `assert` statements. See [`TASKS.md`](TASKS.md) for test details.
+All 15+ agents are real and runnable:
+
+| Agent | Framework | Purpose | Demo Value |
+| --- | --- | --- | --- |
+| **Financial Reader** | LangChain ReAct | Read + summarize public earnings reports | Shows enforcement (confidential blocked), contract v1→v2 upgrade |
+| **Research Orchestrator** | LangGraph (3 nodes) | Fetch papers → analyze → write report | Multi-agent spans, sub-agent delegation, attribution |
+| **OpenAI Research** | OpenAI Agents SDK | Research synthesis | Framework adapter demonstration |
+| **Norma Sentinel** | LangGraph | Fleet governance sweep | Anomaly detection, governance reporting |
+| **Red Team** | LangChain | Intentional violations | Security testing, policy enforcement showcase |
+| **Investment Pipeline** | LangGraph | NVDA analysis + risk report | Complex workflows, cost analysis |
+| **Support Triage** | Multi-turn | Customer ticket routing | Session grouping, escalation |
 
 ---
 
-## Design Principles
+## Documentation
 
-1. **Evidence over confidence** — no claim without a data source, sample size, and window
-2. **Proposals, not verdicts** — LLM output is always a starting point, never an auto-deployed policy
-3. **Two audiences, one data layer** — VP and Engineer modes read from the same DB
-4. **Honest AI tooling** — uncertainty is surfaced, not hidden
-
-Full design doc: [docs/design.md](docs/design.md)
+- **[WIKI.md](docs/WIKI.md)** — Complete technical reference (1400+ lines). Everything you need to answer any question during a presentation.
+- **[DEMO_PLAN.md](docs/DEMO_PLAN.md)** — Demo preparation guide with step-by-step instructions.
+- **[SYSTEM_DESIGN.md](docs/SYSTEM_DESIGN.md)** — Architecture overview and design decisions.
+- **[FEATURES.md](docs/FEATURES.md)** — Feature checklist with implementation status.
+- **[E2E_SCENARIOS_VERIFIED.md](docs/E2E_SCENARIOS_VERIFIED.md)** — End-to-end test scenarios and verification.
 
 ---
 
-## Build Roadmap Summary
+## Status
 
-| Phase | Focus | Est. |
-|---|---|---|
-| 1 | Contract schema, version store, auto-generator | 3–4 hrs |
-| 2 | LangGraph middleware: enforcement + execution logger | 4–5 hrs |
-| 3 | WF1 — Financial Report Agent + Trust Engine | 3–4 hrs |
-| 4 | WF2 — Research Pipeline + Context Routing | 4–5 hrs |
-| 5 | WF3 — Support Triage + Attribution Engine | 4–5 hrs |
-| 6 | Dashboard — VP mode + Engineer mode | 4–5 hrs |
-| 7 | Conversational Q&A + Recommendations + Compliance Export | 3–4 hrs |
-| 8 | Demo polish, seed data, final test run | 3–4 hrs |
+**What's Implemented & Tested:**
 
-See [`TASKS.md`](TASKS.md) for task-level breakdown.
+- ✅ Trust engine (score math, tier transitions)
+- ✅ Enforcement (all 5 checks, always runs, cannot bypass)
+- ✅ Quality scoring (deterministic + LLM judge)
+- ✅ Contract YAML parsing, versioning, human approval
+- ✅ Compliance rules (OWASP, NIST, EU AI Act)
+- ✅ Attribution engine (probabilistic multi-node analysis)
+- ✅ Enhancement recommendations (3 types)
+- ✅ Context routing (token budget enforcement)
+- ✅ OTel-compatible span system
+- ✅ All API endpoints (40+ routes)
+- ✅ Dashboard (fleet, agent detail, run detail, compliance, alerts)
+- ✅ SSE real-time events
+- ✅ norma-watch CLI
+- ✅ Agent onboarding (AST scan → contract proposal)
+- ✅ Multi-agent orchestration (run tree, sub-agent spans)
+- ✅ 97 passing tests
+
+**Not Yet Implemented:**
+
+- Semantic enforcement (LLM-based policy checks — flag exists)
+- OTLP export to external collectors (flag exists)
+- API key authentication (flag exists)
+- Outbound webhooks (Slack, email, PagerDuty)
+- WebSocket streaming (using SSE + polling instead)
