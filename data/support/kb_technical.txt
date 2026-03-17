@@ -1,0 +1,41 @@
+SUPPORT KNOWLEDGE BASE — TECHNICAL SUPPORT
+==========================================
+Version: 3.0 | Last Updated: March 2026
+
+## Common Technical Issues
+
+### Login / Authentication
+Problem: Cannot log in — "Invalid credentials" error
+Steps:
+1. Verify you are using the email address registered to your account
+2. Try password reset: login page → "Forgot Password" → check inbox (including spam)
+3. If SSO/SAML configured, verify your IdP session is active
+4. Clear browser cache and cookies; try incognito mode
+5. If issue persists after password reset, contact support with your account email
+
+### API Integration Issues
+Problem: API returning 401 Unauthorized
+- Verify API key is active: Dashboard → API Keys → check status
+- API keys rotate every 90 days by default; check if renewal was missed
+- Ensure Authorization header format: "Bearer {api_key}"
+- Sandbox vs. Production: verify you're using the correct endpoint
+
+Problem: API rate limit errors (429 Too Many Requests)
+- Default rate limit: 1000 requests/minute per API key
+- Retry-After header specifies wait time
+- For higher limits, contact sales for Enterprise plan
+
+### Data Sync Issues
+Problem: Dashboard showing stale data
+- Most dashboards update every 5 minutes; real-time option available on Pro tier
+- Hard refresh: Ctrl+Shift+R (Win/Linux), Cmd+Shift+R (Mac)
+- If data gap exceeds 30 minutes, likely a pipeline issue — file a P2 ticket
+
+### Integration Connectors
+Salesforce, HubSpot, Slack, Jira connectors: check OAuth token expiry.
+Re-authorize at Integrations → [Connector Name] → Re-connect.
+
+ESCALATION PATH
+P1 (service down): page on-call engineer, response < 15 minutes
+P2 (degraded): ticket response < 2 hours, resolution < 4 hours
+P3 (general): next business day

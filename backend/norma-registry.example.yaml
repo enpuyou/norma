@@ -1,0 +1,130 @@
+# norma-registry.yaml — Example registry for bulk-importing existing agents
+#
+# Run:  poetry run norma-import registry norma-registry.yaml
+#       poetry run norma-import registry norma-registry.yaml --dry-run --snippets
+#
+# Fields:
+#   id          required  snake-case unique identifier
+#   name        required  human-readable name shown in dashboard
+#   type        required  orchestrator | subagent | single
+#   owner       optional  email/username of responsible team member
+#   department  optional  team or business unit
+#   description required  plain-English description → used by contract auto-gen
+#   tools       optional  list of tool names the agent is allowed to call
+#   data.allow  optional  glob patterns for permitted data paths
+#   data.deny   optional  glob patterns for denied data paths (recommended)
+#   langgraph   optional  module + variable to auto-generate the track() snippet
+#
+# Enforcement is DISABLED for all imported agents until a human approves
+# each contract via the norma dashboard or `norma-import` CLI review step.
+
+version: "1"
+
+agents:
+
+  # ── Customer support ──────────────────────────────────────────────────────
+  - id: customer-support-agent
+    name: Customer Support Agent
+    type: orchestrator
+    owner: alice@company.com
+    department: support
+    description: >
+      Handles L1 support ticket triage: classifies, routes, and drafts responses.
+      Uses knowledge base and ticket history. Never touches payment data.
+    tools:
+      - knowledge_base_search
+      - ticket_read
+      - ticket_update
+    data:
+      allow:
+        - knowledge_base/**
+        - ticket_history/**
+      deny:
+        - payment_info/**
+        - internal_notes/**
+        - pii_vault/**
+    langgraph:
+      module: myapp.agents.support
+      variable: support_graph
+
+  # ── Code review ───────────────────────────────────────────────────────────
+  - id: code-review-agent
+    name: Code Review Agent
+    type: single
+    owner: bob@company.com
+    department: engineering
+    description: >
+      Reviews pull requests for bugs, security issues, and code style.
+      Can read GitHub and post comments. Never merges or deletes.
+    tools:
+      - github_read
+      - github_comment
+    data:
+      allow:
+        - repos/**
+      deny:
+        - repos/**/secrets/**
+        - repos/**/.env
+        - repos/**/credentials/**
+    langgraph:
+      module: myapp.agents.code_review
+      variable: review_graph
+
+  # ── Financial reporting ───────────────────────────────────────────────────
+  - id: financial-report-agent
+    name: Financial Report Agent
+    type: single
+    owner: carol@company.com
+    department: finance
+    description: >
+      Summarizes quarterly earnings reports and extracts key financial metrics.
+      No external data access. Reads public financial documents only.
+    tools:
+      - document_read
+      - text_analysis
+    data:
+      allow:
+        - reports/public/**
+      deny:
+        - reports/internal/**
+        - reports/confidential/**
+    langgraph:
+      module: myapp.agents.finance
+      variable: report_graph
+
+  # ── Research pipeline (multi-agent) ──────────────────────────────────────
+  - id: research-pipeline
+    name: Research Report Pipeline
+    type: orchestrator
+    owner: dan@company.com
+    department: strategy
+    description: >
+      Orchestrates 3 subagents (Researcher, Analyst, Writer) to produce
+      executive research summaries. Context routing prevents raw search data
+      from reaching the Writer.
+    tools:
+      - web_search
+      - document_read
+      - internal_db_read
+    data:
+      allow:
+        - research/**
+        - strategy/**
+      deny:
+        - hr/**
+        - legal/confidential/**
+    langgraph:
+      module: myapp.agents.research
+      variable: research_graph
+
+  # ── Meeting summarizer (minimal config example) ───────────────────────────
+  - id: meeting-notes-agent
+    name: Meeting Notes Summarizer
+    type: single
+    owner: eve@company.com
+    department: operations
+    description: Transcribes and summarizes meeting recordings into action items.
+    tools:
+      - transcript_read
+      - calendar_read
+    # No data.deny specified → norma will prompt human reviewer to fill this in

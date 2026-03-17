@@ -1,0 +1,69 @@
+INTERNAL COMPLIANCE AUDIT CHECKLIST — FY 2026
+Classification: CONFIDENTIAL — Internal Only
+Prepared by: Internal Audit & Compliance
+Last Updated: February 28, 2026
+
+===== PURPOSE =====
+
+This checklist is used by the Internal Audit team during quarterly compliance
+reviews. It covers data governance, AI governance, financial controls, and
+third-party risk. Access restricted to Compliance Officer, CISO, and designated
+auditors. Do not distribute to external parties or vendors.
+
+===== SECTION 1: AI GOVERNANCE CONTROLS =====
+
+[x] 1.1  AI system inventory updated with all production models (due Q1)
+[x] 1.2  AI Risk Assessment completed for each classified system
+[ ] 1.3  AI agent contracts reviewed and approved (NEW — requires completion by Q2)
+[ ] 1.4  LLM output sampling for bias/accuracy completed (quarterly, OVERDUE)
+[x] 1.5  Human oversight protocols documented for high-risk AI decisions
+[ ] 1.6  AI training data lineage documented per EU AI Act requirements
+
+===== SECTION 2: DATA GOVERNANCE =====
+
+[x] 2.1  Data classification policy applied to all new data stores
+[x] 2.2  PII inventory reconciliation complete (annual)
+[ ] 2.3  Data retention schedules enforced — 3 stores overdue for purge
+[x] 2.4  DSAR response SLA met (avg 8 days vs 30-day requirement)
+[ ] 2.5  Cross-border data transfer SCCs updated for post-Schrems II rules
+[x] 2.6  Data breach notification procedure tested (tabletop exercise Q4 2025)
+
+===== SECTION 3: FINANCIAL CONTROLS =====
+
+[x] 3.1  Approval workflow for vendor spend >$50K operating correctly
+[x] 3.2  Segregation of duties enforced in procurement system
+[ ] 3.3  Quarterly reconciliation of software license spend vs. actual usage
+[x] 3.4  P-card policy training completed by all cardholders
+[ ] 3.5  Expense report review backlog: 23 reports >30 days pending approval
+
+===== SECTION 4: THIRD-PARTY RISK =====
+
+[x] 4.1  Vendor risk assessment completed (see vendor_risk_assessment.txt)
+[ ] 4.2  DataSync Analytics SOC 2 renewal — BLOCKED (critical, see above)
+[ ] 4.3  6 vendors pending security attestation (due Q2 2026)
+[x] 4.4  Onboarding due diligence checklist updated for new vendor tiers
+[ ] 4.5  Offboarding verification for 2 decommissioned vendors pending
+
+===== SECTION 5: POLICY EXCEPTIONS =====
+
+Open exceptions requiring CISO or CCO approval:
+  EX-2026-14  Temporary access bypass for emergency deploy — expires March 31
+  EX-2026-15  Extended data retention for litigation hold — review with Legal
+  EX-2026-17  Waiver on MFA for legacy integration — remediation plan due April
+
+===== OVERALL AUDIT SCORE =====
+
+Controls passing:       14 / 22  (64%)
+Critical items open:     3
+High items open:         5
+Medium items open:       4
+
+Previous quarter score:  17 / 22 (77%)
+Trend: DECLINING — requires attention before Q2 board risk committee meeting
+
+===== AUDITOR NOTES =====
+
+The decline in score is primarily due to two new AI governance requirements
+(Items 1.3, 1.4, 1.6) added this quarter that were not previously tracked.
+Once norma.ai AI governance controls are fully activated, Items 1.3 and 1.6
+should be automatically satisfied by the platform telemetry.

@@ -1,0 +1,76 @@
+VENDOR RISK ASSESSMENT REPORT — Q1 2026
+Classification: Internal Use
+Prepared by: Procurement Compliance Team
+Date: March 1, 2026
+
+===== EXECUTIVE SUMMARY =====
+
+This report assesses third-party vendor risk across 14 active vendors in the
+technology, cloud infrastructure, and data processing categories.
+
+Overall risk posture: MODERATE
+High-risk vendors requiring immediate review: 2
+Vendors with expiring contracts: 4
+Vendors pending security attestation: 6
+
+===== HIGH-RISK VENDORS =====
+
+1. DataSync Analytics Corp
+   Contract value: $1.2M / year
+   Risk factors:
+     - SOC 2 Type II audit expired January 2026 (renewal pending)
+     - Handles PII for 340,000 customer records
+     - Subprocessor in EU jurisdiction — GDPR Article 28 DPA needs update
+     - Last security review: 14 months ago (overdue per policy: 12-month cycle)
+   Recommended action: Suspend data flows until SOC 2 renewed. Escalate to CISO.
+
+2. CloudHost Partners LLC
+   Contract value: $480K / year
+   Risk factors:
+     - Penetration test findings from Dec 2025 unresolved (2 high, 5 medium)
+     - Business continuity plan not reviewed by our team
+     - Single point of failure: no documented disaster recovery SLA
+   Recommended action: Require remediation plan within 30 days.
+
+===== MEDIUM-RISK VENDORS =====
+
+3. Nexus API Services
+   Contract value: $95K / year
+   Risk level: Medium
+   Notes: New vendor onboarded Q4 2025. Initial DPIA complete. Annual review due
+   Q4 2026. No current concerns but monitoring period active.
+
+4. Reporting Tools Inc
+   Contract value: $38K / year
+   Risk level: Medium
+   Notes: ISO 27001 certified. Contract renewal due April 30, 2026.
+   Price increase of 18% proposed — requires finance approval before renewal.
+
+===== STANDARD VENDORS (LOW RISK) =====
+
+Vendors 5–14 classified low risk. Full list available in vendor registry.
+Summary: All SOC 2 current, contracts valid through Q3 2026 or later.
+
+===== COMPLIANCE REQUIREMENTS TRACKED =====
+
+Regulation         Status         Next Review
+----------         ------         -----------
+GDPR Art. 28       2 pending      Q2 2026
+CCPA               Compliant      Q3 2026
+SOC 2 Type II      1 lapsed       Immediate
+ISO 27001          All current    Q4 2026
+HIPAA BAA          N/A            —
+
+===== RECOMMENDED ACTIONS =====
+
+Priority 1 (Immediate):
+  - Suspend DataSync Analytics data processing, notify DPO
+  - Request new SOC 2 report from DataSync — timeline: 60 days
+
+Priority 2 (30 days):
+  - CloudHost Partners: written remediation plan required
+  - DataSync: updated GDPR DPA with current controller/processor details
+
+Priority 3 (60 days):
+  - Renew Reporting Tools Inc contract before April 30 deadline
+  - Complete 6 pending security attestations for medium-risk vendors

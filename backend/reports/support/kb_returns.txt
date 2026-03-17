@@ -1,0 +1,33 @@
+SUPPORT KNOWLEDGE BASE — RETURNS & CANCELLATIONS
+==================================================
+Version: 1.8 | Last Updated: February 2026
+
+## Cancellation Policy
+
+### Subscription Cancellation
+Can be done at any time through Account Settings → Subscription → Cancel Plan.
+- Cancellation takes effect at end of current billing period
+- No prorated refund for monthly plans mid-period (exception: billing errors)
+- Annual plans: cancellation within 14 days of renewal → full refund
+- Data export: 30-day window post-cancellation to export data
+
+### Hardware Returns (if applicable)
+Return window: 30 days from delivery
+Condition: must be in original packaging, no physical damage
+RMA process: submit at returns.example.com, include order number
+Refund: issued within 5 business days of return receipt inspection
+
+## Enterprise Contract Cancellations
+Governed by signed MSA/SOW terms. Cancellation requires written notice
+per contractually specified notice period (typically 30-90 days).
+Early termination fees may apply per contract terms.
+Contact your Account Executive before initiating cancellation.
+
+## Downgrades
+Downgrade from higher tier is effective at next renewal date.
+Features from higher tier remain accessible until renewal.
+Some data limits become active immediately (e.g., storage quotas).
+
+ESCALATION PATH
+Customer requesting cancellation + high ARR (>$50K): flag to Customer Success
+Dispute over cancellation refund: escalate to billing.escalations@example.com

@@ -1,0 +1,26 @@
+default:
+  input_per_1m: 5.0
+  output_per_1m: 15.0
+  context_window: 128000
+
+models:
+  gpt-4o:
+    input_per_1m: 5.0
+    output_per_1m: 15.0
+    context_window: 128000
+  gpt-4o-mini:
+    input_per_1m: 0.15
+    output_per_1m: 0.60
+    context_window: 128000
+  gpt-4.1:
+    input_per_1m: 2.0
+    output_per_1m: 8.0
+    context_window: 1000000
+  gpt-4.1-mini:
+    input_per_1m: 0.40
+    output_per_1m: 1.60
+    context_window: 1000000
+  gpt-4.1-nano:
+    input_per_1m: 0.10
+    output_per_1m: 0.40
+    context_window: 1000000

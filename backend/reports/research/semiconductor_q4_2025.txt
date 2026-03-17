@@ -1,0 +1,35 @@
+SEMICONDUCTOR SUPPLY CHAIN — Q4 2025 RESEARCH BRIEF
+=====================================================
+Prepared: January 2026 | Classification: Public
+
+EXECUTIVE SUMMARY
+Global semiconductor supply chain stabilized in Q4 2025 following 18 months of
+constrained lead times. TSMC 3nm capacity utilization reached 94% driven by AI
+accelerator demand. Samsung and Intel continued capacity investments.
+
+KEY FINDINGS
+1. Lead Times: Average lead times declined from 26 weeks (Q3 2025) to 18 weeks
+   (Q4 2025) across logic and memory segments.
+
+2. AI Accelerator Demand: H100/H200 GPU equivalents saw 340% YoY demand increase.
+   NVIDIA, AMD, and custom silicon (Google TPU v5, Amazon Trainium 2) drove the
+   majority of TSMC capacity allocation.
+
+3. Geopolitical Risk: ASML EUV export restrictions continued to limit advanced
+   logic capacity outside Taiwan and South Korea. This represents a structural
+   supply concentration risk for 2026.
+
+4. Inventory: Consumer electronics inventory digestion largely complete by Q4 2025.
+   PC DRAM and NAND oversupply conditions eased; pricing recovered 15-22%.
+
+RISK FACTORS
+- Taiwan Strait geopolitical tension remains an extreme tail risk
+- US CHIPS Act facility ramp-up slower than projected (2028 vs. 2027 timeline)
+- Advanced packaging bottleneck (CoWoS) limits AI chip output despite fab capacity
+
+OUTLOOK 2026
+AI infrastructure buildout will sustain above-trend demand. Automotive and
+industrial segments recovering from 2024 inventory correction. Overall sector
+revenue growth estimate: 12-15% YoY.
+
+Sources: SEMI Quarterly Report, IDC Supply Chain Tracker, company filings

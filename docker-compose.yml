@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: norma-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: norma
+      POSTGRES_PASSWORD: norma
+      POSTGRES_DB: norma
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: norma-backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://norma:norma@db:5432/norma
+      APP_ENV: development
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: norma-frontend
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+    ports:
+      - "3030:3030"
+
+volumes:
+  pgdata:

@@ -1,0 +1,34 @@
+AI CHIP DEMAND FORECAST — HYPERSCALER CAPEX ANALYSIS
+======================================================
+Prepared: Q4 2025 | Classification: Public
+
+EXECUTIVE SUMMARY
+Hyperscaler AI infrastructure spending accelerated dramatically in 2025. Combined
+AI chip procurement by Microsoft, Google, Meta, Amazon, and Oracle reached
+an estimated $92B, doubling from $46B in 2024.
+
+HYPERSCALER CAPEX BREAKDOWN (2025 Estimates)
+- Microsoft: $32B (Azure AI, Copilot infrastructure, OpenAI partnership)
+- Google: $24B (TPU v5/v6 deployment, Gemini training and inference)
+- Meta: $18B (LLaMA 3.x training, Advantage AI platform)
+- Amazon: $14B (Trainium 2, Inferentia 3, Bedrock capacity)
+- Oracle: $4B (NVIDIA cluster buildout for OCI AI services)
+
+SUPPLY AND DEMAND DYNAMICS
+NVIDIA H100/H200 continue to face demand-supply imbalance. Lead times for
+GB200 NVL72 systems extended to 9-12 months as of Q4 2025.
+AMD MI300X gained meaningful share in inference workloads (est. 12% of new
+inference deployments in H2 2025, up from 4% in H1).
+
+2026 FORECAST
+Total AI chip market: $180-210B (up from ~$105B in 2025).
+Custom silicon (TPU, Trainium, Marvell OCTEON) expected to represent 28% of
+total compute hours deployed.
+
+Key variable: NVIDIA Blackwell (GB200) ramp determines whether demand-supply
+gap closes by H2 2026. Current trajectory suggests persistent shortage.
+
+RISK: China AI chip restrictions tightened in December 2025 (H20 controls
+expanded). Impact on Chinese hyperscalers' capex plans is uncertain.
+
+Sources: Company 10-K/Q filings, Morgan Stanley AI Infrastructure Report Q4 2025

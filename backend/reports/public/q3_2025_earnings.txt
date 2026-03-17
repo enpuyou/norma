@@ -1,0 +1,27 @@
+ACME CORP — Q3 2025 EARNINGS SUMMARY
+=====================================
+Period: July 1 – September 30, 2025
+Released: October 22, 2025
+
+HEADLINE METRICS
+  Revenue:          $2.31B  (+10% YoY, +2% QoQ)
+  Operating Income: $328M   (+14% YoY)
+  Net Income:       $256M   (+11% YoY)
+  EPS (diluted):    $1.02   (vs. $0.91 prior year)
+  Free Cash Flow:   $370M
+
+SEGMENT PERFORMANCE
+  SaaS Products:     $1.54B revenue (+16% YoY) — mid-market expansion strong
+  Professional Svc:  $476M revenue  (+2% YoY)
+  Legacy Licenses:   $290M revenue  (-10% YoY)
+
+GUIDANCE — Q4 2025
+  Revenue:          $2.38B–$2.44B  (actual: $2.41B — beat midpoint)
+  Operating Margin: 15%–16%
+  EPS (diluted):    $1.14–$1.20    (actual: $1.18 — within range)
+
+NOTES
+  - EMEA showing softness; APAC growing 21% YoY
+  - AI copilot add-on attached to 38% of new SaaS contracts (up from 22%)
+
+CONFIDENCE SCORE: 0.91

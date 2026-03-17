@@ -1,0 +1,38 @@
+SUPPORT KNOWLEDGE BASE — BILLING & PAYMENTS
+============================================
+Version: 2.1 | Last Updated: March 2026
+
+## Common Billing Questions
+
+### Q: How do I request a refund?
+Refunds can be requested within 30 days of purchase. Submit a refund request
+through the customer portal at help.example.com/refund. Processing time is
+3-5 business days. Refunds are returned to the original payment method.
+
+For subscription charges:
+- Monthly subscriptions: prorated refund for unused days
+- Annual subscriptions: refund eligible within 14 days of renewal
+- One-time purchases: full refund within 30 days, partial after
+
+### Q: Why was I charged twice?
+Duplicate charges typically result from a payment retry after a temporary
+network error. To verify: log in to your account → Billing → Transaction History.
+If a duplicate charge is confirmed, file a billing dispute ticket and include
+the transaction IDs. Refund issued within 2 business days.
+
+### Q: How do I update my payment method?
+Account Settings → Billing → Payment Methods → Add New Method.
+Supports Visa, Mastercard, Amex, ACH bank transfer, and wire transfer (enterprise).
+
+### Q: Invoice requests
+PDF invoices auto-generate for all charges. Download from:
+Account Settings → Billing → Invoices → Select date range.
+For consolidated invoices across multiple accounts, contact billing@example.com.
+
+### Q: Promotional code not applying
+Ensure the code has not expired. Codes are case-sensitive. Codes for new
+customers cannot be applied to existing accounts. One code per order.
+
+ESCALATION PATH
+Billing disputes unresolved after 5 business days → billing.escalations@example.com
+Chargeback / dispute received → flag to finance team within 24 hours

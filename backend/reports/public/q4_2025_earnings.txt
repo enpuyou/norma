@@ -1,0 +1,28 @@
+ACME CORP — Q4 2025 EARNINGS SUMMARY
+=====================================
+Period: October 1 – December 31, 2025
+Released: January 28, 2026
+
+HEADLINE METRICS
+  Revenue:          $2.41B  (+12% YoY, +4% QoQ)
+  Operating Income: $387M   (+18% YoY)
+  Net Income:       $294M   (+15% YoY)
+  EPS (diluted):    $1.18   (vs. $1.02 prior year)
+  Free Cash Flow:   $410M
+
+SEGMENT PERFORMANCE
+  SaaS Products:     $1.62B revenue (+19% YoY) — driven by enterprise deals
+  Professional Svc:  $490M revenue  (+3% YoY)  — integration backlog clearing
+  Legacy Licenses:   $298M revenue  (-8% YoY)  — expected decline
+
+GUIDANCE — Q1 2026
+  Revenue:          $2.30B–$2.35B
+  Operating Margin: 15%–16%
+  EPS (diluted):    $1.08–$1.13
+
+KEY RISKS
+  - Enterprise deal cycle elongation (avg 112 days, +14 days YoY)
+  - Headcount costs up 9% due to AI/ML talent competition
+  - FX headwind: $41M drag in Q4
+
+CONFIDENCE SCORE: 0.94  (based on 2 analyst reconciliations)

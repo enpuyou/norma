@@ -1,0 +1,37 @@
+PHARMA PATENT CLIFF ANALYSIS — 2026-2030
+=========================================
+Prepared: January 2026 | Classification: Public
+
+EXECUTIVE SUMMARY
+The pharmaceutical industry faces its largest patent cliff in history over
+2026-2030, with an estimated $280B in branded drug revenue at risk from generic
+and biosimilar competition. This analysis covers the major molecules at risk and
+strategic responses by affected companies.
+
+TOP DRUGS LOSING EXCLUSIVITY 2026-2028
+
+| Drug              | Company    | 2025 Revenue | Patent Expiry |
+|-------------------|------------|--------------|---------------|
+| Keytruda          | Merck      | $25B         | 2028 (US)     |
+| Eliquis           | BMS/Pfizer | $12B         | 2026 (US)     |
+| Ozempic           | Novo       | $14B         | 2032 (primary)|
+| Entresto          | Novartis   | $7B          | 2026 (EU)     |
+| Dupixent          | Sanofi/Reg | $13B         | 2031          |
+
+BIOSIMILAR MARKET
+Biologics represent 40% of total global pharma revenue. Biosimilar penetration
+remains lower than small molecule generics due to higher development costs and
+physician/patient adoption friction. However, adalimumab biosimilars captured
+35% of US market share within 18 months of launch, suggesting accelerating
+uptake for future biosimilars.
+
+STRATEGIC RESPONSES
+- Merck: Pipeline transition to co-formulations; Keytruda + chemo
+  combos may extend exclusivity
+- AstraZeneca: Oncology pipeline deepening; Tagrisso successor compounds
+- Pfizer: Oncology acquisition strategy post-Seagen integration
+
+KEY RISK: Companies with >40% revenue concentration in patents expiring
+2026-2028 face significant earnings pressure regardless of pipeline execution.
+
+Sources: EvaluatePharma, FDA Purple Book, company filings

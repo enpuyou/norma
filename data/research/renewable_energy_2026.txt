@@ -1,0 +1,36 @@
+RENEWABLE ENERGY POLICY OUTLOOK — 2026
+=======================================
+Prepared: February 2026 | Classification: Public
+
+EXECUTIVE SUMMARY
+2026 marks a pivotal year for renewable energy policy following the passage of the
+Clean Power Transition Act (CPTA) in late 2025. Solar and wind capacity additions
+are projected to exceed 450 GW globally, a 28% increase over 2025.
+
+KEY POLICY DEVELOPMENTS
+1. US Inflation Reduction Act (IRA) Phase 2: Treasury finalized transferability
+   rules for clean energy tax credits. Corporate offtakers can now more easily
+   monetize Section 48E credits, unlocking an estimated $180B in additional
+   project financing over 2026-2028.
+
+2. EU Green Deal Industrial Plan: European Commission raised renewable targets to
+   50% by 2030. Member states must submit updated National Energy Plans by Q2 2026.
+
+3. China 14th Five-Year Plan execution: China installed 340 GW of new solar in 2025,
+   exceeding targets by 40%. Wind additions on track for 120 GW in 2026.
+
+TECHNOLOGY TRENDS
+- Utility-scale battery storage (4-hour duration) costs fell below $180/kWh,
+  crossing the grid parity threshold for peaker plant replacement.
+- Offshore wind: floating offshore costs approaching $90/MWh in European markets.
+- Green hydrogen: electrolysis capex declined 35% since 2023; $4/kg target
+  achievable in high-irradiance regions by 2027.
+
+INVESTMENT IMPLICATIONS
+Overweight: US solar developers with IRA credit monetization strategies,
+European offshore wind operators, grid infrastructure (transmission, storage).
+
+Risks: Permitting backlogs (US averages 4-7 years for transmission), supply chain
+concentration in Chinese solar modules, interest rate sensitivity.
+
+Sources: IEA World Energy Outlook 2025, BloombergNEF, S&P Global Commodity Insights

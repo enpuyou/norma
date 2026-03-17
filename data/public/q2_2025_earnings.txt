@@ -1,0 +1,27 @@
+ACME CORP — Q2 2025 EARNINGS SUMMARY
+=====================================
+Period: April 1 – June 30, 2025
+Released: July 24, 2025
+
+HEADLINE METRICS
+  Revenue:          $2.26B  (+9% YoY)
+  Operating Income: $288M   (+12% YoY)
+  Net Income:       $230M   (+8% YoY)
+  EPS (diluted):    $0.91
+  Free Cash Flow:   $325M
+
+SEGMENT PERFORMANCE
+  SaaS Products:     $1.48B revenue (+14% YoY)
+  Professional Svc:  $464M revenue  (+1% YoY)
+  Legacy Licenses:   $318M revenue  (-7% YoY)
+
+GUIDANCE — Q3 2025
+  Revenue:          $2.26B–$2.34B  (actual: $2.31B — at midpoint)
+  EPS (diluted):    $0.98–$1.04    (actual: $1.02 — at midpoint)
+
+NOTES
+  - Board approved $500M share buyback program
+  - R&D spend up 22% driven by AI infrastructure
+  - Gross margin expanded 40bps YoY to 68.4%
+
+CONFIDENCE SCORE: 0.93
